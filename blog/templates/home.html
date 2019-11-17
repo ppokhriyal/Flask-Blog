@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if len_post == 0 %}
+	<div class=" container justify-center">
+		<h1 class="text-center text-info display-3">Hey !! Welcome</h1>
+		<p class="text-center text-muted">Be first to share your knowledge.</p>
+	</div>
+{% else %}
+	{% for post in posts.items %}
+		<div class="card mb-3">
+  			<h5 class="card-header">
+  				<img src="{{ url_for('static',filename='profile_pics/'+ post.author.image_file) }}" class="mr-3 rounded-circle" style="width:50px;">
+  				<a class="article-title text-dark" href="{{url_for('editpost',post_id=post.id)}}">{{ post.title }}</a>
+  			</h5>
+  			<div class="card-body">
+    			<p class="card-text line-height:1.7em">{{ post.content | safe }}</p>
+    		</div>
+  			<div class="card-footer text-muted">
+    			<small class="text-secondary">
+    				Posted by : <a href="{{ url_for('user_posts',username=post.author.username) }}">{{ post.author.username }}</a>
+    				<b>|</b> Posted on : {{ post.date_posted.strftime('%d-%m-%Y') }}
+    				<b>|</b> Category <a href="{{ url_for('category',catgname=post.category)}}">
+                  <span class="badge badge-pill badge-warning">{{ post.category }}</a></span>
+    			</small>
+  			</div>
+		</div>
+	{% endfor %}
+	<div class="rounded-0 col-lg-13 mx-auto">
+    	{% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+      		{% if page_num %}
+        		{% if posts.page == page_num %}
+          			<a class="btn btn-info mb-4 mt-2" href="{{ url_for('home',page=page_num)}}">{{ page_num }}</a>
+        		{% else %}
+          			<a class="btn btn-outline-info mb-4 mt-2" href="{{ url_for('home',page=page_num)}}">{{ page_num }}</a>
+        		{% endif %}  
+      		{% else %}
+        		...
+      		{% endif %}
+    	{% endfor %}
+   </div>		
+{% endif %}
+{% endblock content %}

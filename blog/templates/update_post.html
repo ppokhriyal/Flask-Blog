@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div class="container">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			{{form.csrf_token }}
+
+			<fieldset class="form-group">
+            	<legend class="border-bottom"><span class="fa fa-pencil-square-o ml-auto" aria-hidden="true"></span> New Post</legend>
+        	</fieldset>
+
+         	<div class="form-group">
+          		{{ form.title.label(class="form-control-label") }}
+          		{% if form.title.errors %}
+            		{{ form.title(class="form-control is-invalid") }}
+            	<div class="invalid-feedback">
+              		{% for error in form.title.errors %}
+                		<span>{{ error }}</span>
+              		{% endfor %}
+            	</div>
+          		{% else %}
+            		{{ form.title(class="form-control form-control-sm col-sm") }}
+          		{% endif %}  
+        	</div>
+        	<div class="form-group w-60 h-50 shadow-textarea">
+          		{{ form.content.label(class="form-control-label") }}
+          		{% if form.content.errors %}
+              		{{ form.content(class="form-control form-control-sm col-sm is-invalid") }}
+            		<div class="invalid-feedback">
+              			{% for error in form.content.errors %}
+                			<span>{{ error }}</span>
+              			{% endfor %}
+            		</div>
+          		{% else %}
+              		{{ form.content(class="form-control form-control-sm col-md-12",placeholder="Write your new post ..")}}
+          		{% endif %}
+        	</div>
+        	<div class="form-group">
+        		<span class="fa fa-tag ml-auto" aria-hidden="true"></span>
+            	{{ form.category_name.label(class="form-control-label")}}
+            	{{ form.category_name(class="form-control") }}
+          	</div>
+        	<div class="form-group mt-2">
+          		{{ form.submit(class="btn btn-primary")}}
+          		<a class="btn btn-warning" href="{{url_for('home')}}">Cancel</a>
+        	</div>
+
+		</form>
+	</div>
+{% endblock content %}

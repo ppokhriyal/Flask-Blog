@@ -98,7 +98,7 @@ def new_post():
 	if form.validate_on_submit():
 
 		session['content'] = request.form['content']
-		html = markdown.markdown(request.form['content'])
+		html = markdown.markdown(request.form['content'],extensions=['nl2br'],safe_mode=True,output_format='html5')
 		# Tags deemed safe
 		allowed_tags = [
 		'a','abbr','acronym','b','blockquote','code',

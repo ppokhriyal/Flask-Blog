@@ -1,4 +1,4 @@
-# Flask-Blog
+# Flask : Blogging Application
 
-#Installaion Guide
+
 

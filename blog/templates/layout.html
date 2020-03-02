@@ -129,9 +129,9 @@
 			{% endblock content%}		
 		</div>
 		<!--Sidebar widgets-->
-		<div class="col-md-4 ">
+		<div class="col-md-4">
 		<!-- Search Widget -->
-        	<div class="card">
+        	<!-- <div class="card">
           		<h5 class="card-header">Search</h5>
           		<div class="card-body">
             		<div class="input-group">
@@ -141,7 +141,7 @@
               				</span>
             		</div>
           		</div>
-        	</div>
+        	</div> -->
         	<div class="card my-4">
           		<h5 class="card-header">Categories</h5>
           		<div class="card-body">
@@ -152,49 +152,49 @@
                     				<a href="{{ url_for('category',catgname='General')}}">General</a>
                   				</li>
                   				<li>
-                    				<a href="#">PHP</a>
+                    				<a href="{{ url_for('category',catgname='PHP')}}">PHP</a>
                   				</li>
                   				<li>
-                    				<a href="#">Ubuntu</a>
+                    				<a href="{{ url_for('category',catgname='Ubuntu')}}">Ubuntu</a>
                   				</li>
                 			</ul>
               			</div>
               			<div class="col-lg-6">
                 			<ul class="list-unstyled mb-0">
                   				<li>
-                    				<a href="#">Linux</a>
+                    				<a href="{{ url_for('category',catgname='Linux')}}">Linux</a>
                   				</li>
                   				<li>
-                    				<a href="#">Bash</a>
+                    				<a href="{{ url_for('category',catgname='Bash')}}">Bash</a>
                   				</li>
                   				<li>
-                    				<a href="#">QT</a>
+                    				<a href="{{ url_for('category',catgname='QT')}}">QT</a>
                   				</li>
                 			</ul>
               			</div>
                     <div class="col-lg-6">
                       <ul class="list-unstyled mb-0">
                           <li>
-                            <a href="#">Vmware Horizon</a>
+                            <a href="{{ url_for('category',catgname='Vmware')}}">Vmware Horizon</a>
                           </li>
                           <li>
-                            <a href="#">Citrix</a>
+                            <a href="{{ url_for('category',catgname='Citrix')}}">Citrix</a>
                           </li>
                           <li>
-                            <a href="#">Firefox</a>
+                            <a href="{{ url_for('category',catgname='Firefox')}}">Firefox</a>
                           </li>
                       </ul>
                     </div>
                     <div class="col-lg-6">
                       <ul class="list-unstyled mb-0">
                           <li>
-                            <a href="#">Digital Signage</a>
+                            <a href="{{ url_for('category',catgname='Digital Signage')}}">Digital Signage</a>
                           </li>
                           <li>
-                            <a href="#">Kernel</a>
+                            <a href="{{ url_for('category',catgname='Kernel')}}">Kernel</a>
                           </li>
                           <li>
-                            <a href="#">RDP</a>
+                            <a href="{{ url_for('category',catgname='RDP')}}">RDP</a>
                           </li>
                       </ul>
                     </div>

@@ -23,9 +23,13 @@ class RegistrationForm(FlaskForm):
     def validate_email(self,email):
 
         user = User.query.filter_by(email=email.data).first()
+        check_email_valid = email.data
+        if check_email_valid.split('@')[1] != "vxlsoftware.com":
+            raise ValidationError('Please enter your valid vxlsoftware email id.')
         if user:
            raise ValidationError('That email is taken. Please choose a diffrent one.')
 
+           
 
 class LoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])

@@ -141,8 +141,23 @@ def update_post(post_id):
 
 	form = PostForm()
 	if form.validate_on_submit():
+		html = markdown.markdown(request.form['content'],extensions=['nl2br'],safe_mode=True,output_format='html5')
+		# Tags deemed safe
+		allowed_tags = [
+		'a','abbr','acronym','b','blockquote','code',
+		'em','i','li','ol','pre','strong','ul','img',
+		'h1','h2','h3','p','br'
+		]
+		# Attributes deemed safe
+		allowed_attrs = {
+		'*':['class'],
+		'a':['href','rel'],
+		'img':['src','alt']
+		}
+		# Sanitize HTML
+		html_sanitized = bleach.clean(bleach.linkify(html),tags=allowed_tags,attributes=allowed_attrs)
 		post.title = form.title.data
-		post.content = form.content.data
+		post.content = html_sanitized
 		db.session.commit()
 		flash('Your post has been updated!','success')
 		return redirect(url_for('editpost',post_id=post_id))
